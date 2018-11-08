@@ -6,3 +6,5 @@
             downloadSources = true
         }
     }
+
+执行gradle cleanEclipse eclipse命令
