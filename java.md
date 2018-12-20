@@ -6,3 +6,73 @@
 [JVM 类加载机制详解](http://www.importnew.com/25295.html)
 
 [java虚拟机：运行时常量池](https://www.cnblogs.com/xiaotian15/p/6971353.html)
+
+## HttpClient绕过https协议，设置server username password
+
+```Java
+private String getOAuth2Token() throws IOException {
+    String token = null;
+    CloseableHttpClient client = null;
+    try {
+        SSLContext sslcontext = createIgnoreVerifySSL();
+        Registry<ConnectionSocketFactory> socketFactoryRegistry = RegistryBuilder.<ConnectionSocketFactory>create()
+                .register("http", PlainConnectionSocketFactory.INSTANCE)
+                .register("https", new SSLConnectionSocketFactory(sslcontext)).build();
+        PoolingHttpClientConnectionManager connManager = new PoolingHttpClientConnectionManager(
+                socketFactoryRegistry);
+        HttpClients.custom().setConnectionManager(connManager);
+
+        CredentialsProvider credentialsProvider = new BasicCredentialsProvider();
+        credentialsProvider.setCredentials(AuthScope.ANY,
+                new UsernamePasswordCredentials("username", "password"));
+
+        client = HttpClients.custom().setConnectionManager(connManager)
+                .setDefaultCredentialsProvider(credentialsProvider).build();
+        HttpPost httpPost = new HttpPost("https://xxx");
+        List<NameValuePair> nvps = new ArrayList<NameValuePair>();
+        nvps.add(new BasicNameValuePair("data_name", "data_value"));
+        httpPost.setEntity(new UrlEncodedFormEntity(nvps, "utf-8"));
+
+        CloseableHttpResponse response = client.execute(httpPost);
+
+        HttpEntity responseEntity = response.getEntity();
+        if (responseEntity != null) {
+            String responseBody = EntityUtils.toString(responseEntity, "UTF-8");
+            JSONObject jsonObject = new JSONObject(responseBody);
+            token = (String) jsonObject.get("access_token");
+        }
+        EntityUtils.consume(responseEntity);
+        response.close();
+        System.out.println("token: " + token);
+    } catch (Exception e) {
+        log.error("get OAuth2 Token from server failed", e);
+    } finally {
+        if (client != null) {
+            client.close();
+        }
+    }
+    return token;
+}
+
+private SSLContext createIgnoreVerifySSL() throws NoSuchAlgorithmException, KeyManagementException {
+    SSLContext sc = SSLContext.getInstance("SSLv3");
+    X509TrustManager trustManager = new X509TrustManager() {
+        @Override
+        public void checkClientTrusted(java.security.cert.X509Certificate[] paramArrayOfX509Certificate,
+                String paramString) throws CertificateException {
+        }
+
+        @Override
+        public void checkServerTrusted(java.security.cert.X509Certificate[] paramArrayOfX509Certificate,
+                String paramString) throws CertificateException {
+        }
+
+        @Override
+        public java.security.cert.X509Certificate[] getAcceptedIssuers() {
+            return null;
+        }
+    };
+    sc.init(null, new TrustManager[] { trustManager }, null);
+    return sc;
+}
+```
