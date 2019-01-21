@@ -7,6 +7,8 @@
 
 [java虚拟机：运行时常量池](https://www.cnblogs.com/xiaotian15/p/6971353.html)
 
+[java--遇到NoSuchMethodError通用解决思路](https://www.cnblogs.com/xiaoMzjm/p/4566672.html)
+
 ## HttpClient绕过https协议，设置server username password
 
 ```Java
