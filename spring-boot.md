@@ -11,3 +11,10 @@
     自定义处理Spring Bean的定义和创建Bean的行为
 
 [spring boot(五)：spring data jpa的使用](https://www.cnblogs.com/ityouknow/p/5891443.html)
+
+[Spring缓存注解@Cacheable、@CacheEvict、@CachePut使用](https://www.cnblogs.com/fashflying/p/6908028.html)
+     
+     默认的key生成策略是通过KeyGenerator生成的，其默认策略如下：
+     如果方法没有参数，则使用0作为key。
+     如果只有一个参数的话则使用该参数作为key。
+     如果参数多余一个的话则使用所有参数的hashCode作为key。
