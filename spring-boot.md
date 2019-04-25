@@ -1,6 +1,10 @@
 # Spring Boot
 
-## [Spring Boot Executable Jar with Classpath](https://stackoverflow.com/questions/39716796/spring-boot-executable-jar-with-classpath)
+## [Spring Boot Executable Jar with Classpath(loader.path)](https://stackoverflow.com/questions/39716796/spring-boot-executable-jar-with-classpath)
+
+## [Spring Boot 用gradle bootJar打包瘦身(外置依赖jar)](https://my.oschina.net/formatkm/blog/1822900)
+
+## [Spring Boot Gradle Plugin Reference Guide](https://docs.spring.io/spring-boot/docs/current/gradle-plugin/reference/html/)
 
 ## @ConfigurationProperties
 
