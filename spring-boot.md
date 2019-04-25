@@ -1,5 +1,7 @@
 # Spring Boot
 
+## [Spring Boot Executable Jar with Classpath](https://stackoverflow.com/questions/39716796/spring-boot-executable-jar-with-classpath)
+
 ## @ConfigurationProperties
 
     把yml配置文件中的属性映射成Java对象时，需要设置对应属性的get，set方法
