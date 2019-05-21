@@ -9,6 +9,8 @@
 
 [java--遇到NoSuchMethodError通用解决思路](https://www.cnblogs.com/xiaoMzjm/p/4566672.html)
 
+[关于java.ext.dirs——使用路径启动main class](https://blog.csdn.net/scugxl/article/details/43240991)
+
 ## HttpClient绕过https协议，设置server username password
 
 ```Java
