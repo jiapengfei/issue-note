@@ -11,6 +11,8 @@
 
 [关于java.ext.dirs——使用路径启动main class](https://blog.csdn.net/scugxl/article/details/43240991)
 
+[Java指令-Djava.ext.dirs的陷阱——加上jre默认路径](https://blog.csdn.net/cyony/article/details/74375251)
+
 ## HttpClient绕过https协议，设置server username password
 
 ```Java
